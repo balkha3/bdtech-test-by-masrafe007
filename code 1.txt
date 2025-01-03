@@ -1,0 +1,139 @@
+NFT. GRUP, [1/3/2025 7:17 AM]
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Display counter values -->
+    <TextView
+        android:id="@+id/tvCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SubhanAllah: 0\nAlhamdulillah: 0\nAllahu Akbar: 0"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"/>
+
+    <!-- SubhanAllah Button -->
+    <Button
+        android:id="@+id/btnSubhanAllah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SubhanAllah"
+        android:layout_below="@id/tvCounter"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Alhamdulillah Button -->
+    <Button
+        android:id="@+id/btnAlhamdulillah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alhamdulillah"
+        android:layout_below="@id/btnSubhanAllah"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Allahu Akbar Button -->
+    <Button
+        android:id="@+id/btnAllahuAkbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Allahu Akbar"
+        android:layout_below="@id/btnAlhamdulillah"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Reset Button -->
+    <Button
+        android:id="@+id/btnReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset"
+        android:layout_below="@id/btnAllahuAkbar"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>
+
+NFT. GRUP, [1/3/2025 7:17 AM]
+package com.example.digitaltajbih;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    // Declare the TextView and Buttons
+    private TextView tvCounter;
+    private Button btnSubhanAllah, btnAlhamdulillah, btnAllahuAkbar, btnReset;
+    
+    // Initialize counters for each Dhikr
+    private int counterSubhanAllah = 0;
+    private int counterAlhamdulillah = 0;
+    private int counterAllahuAkbar = 0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Linking UI elements with Java code
+        tvCounter = findViewById(R.id.tvCounter);
+        btnSubhanAllah = findViewById(R.id.btnSubhanAllah);
+        btnAlhamdulillah = findViewById(R.id.btnAlhamdulillah);
+        btnAllahuAkbar = findViewById(R.id.btnAllahuAkbar);
+        btnReset = findViewById(R.id.btnReset);
+
+        // Setting onClickListeners for buttons
+        btnSubhanAllah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                counterSubhanAllah++;  // Increment counter for SubhanAllah
+                updateCounter();       // Update displayed counts
+            }
+        });
+
+        btnAlhamdulillah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                counterAlhamdulillah++;  // Increment counter for Alhamdulillah
+                updateCounter();         // Update displayed counts
+            }
+        });
+
+        btnAllahuAkbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                counterAllahuAkbar++;  // Increment counter for Allahu Akbar
+                updateCounter();       // Update displayed counts
+            }
+        });
+
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetCounters();  // Reset all counters
+            }
+        });
+    }
+
+    // Method to update the displayed counts in the TextView
+    private void updateCounter() {
+        String counterText = "SubhanAllah: " + counterSubhanAllah + "\n" +
+                             "Alhamdulillah: " + counterAlhamdulillah + "\n" +
+                             "Allahu Akbar: " + counterAllahuAkbar;
+        tvCounter.setText(counterText);  // Set the new text to the TextView
+    }
+
+    // Method to reset the counters
+    private void resetCounters() {
+        counterSubhanAllah = 0;
+        counterAlhamdulillah = 0;
+        counterAllahuAkbar = 0;
+        updateCounter();  // Update the displayed counts after reset
+    }
+}
